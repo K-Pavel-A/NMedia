@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toStartOf="@id/options_buttonview"
         app:layout_constraintStart_toEndOf="@id/avatar_imageview"
         app:layout_constraintTop_toTopOf="@id/avatar_imageview"
-        tools:text="Нетология. Университет интернет-профессий" />
+        android:text="Нетология. Университет интернет-профессий" />
 
     <TextView
         android:id="@+id/date_textview"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:ellipsize="end"
-        tools:text="21 мая в 18:36"
+        android:text="21 мая в 18:36"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@id/description_textview"
         app:layout_constraintEnd_toEndOf="@id/description_textview"

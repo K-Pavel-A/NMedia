@@ -3,18 +3,141 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/avatar_imageview"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="20dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="Posts"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 
+    <TextView
+        android:id="@+id/description_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/date_textview"
+        app:layout_constraintEnd_toStartOf="@id/options_buttonview"
+        app:layout_constraintStart_toEndOf="@id/avatar_imageview"
+        app:layout_constraintTop_toTopOf="@id/avatar_imageview"
+        tools:text="Нетология. Университет интернет-профессий" />
+
+    <TextView
+        android:id="@+id/date_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:ellipsize="end"
+        tools:text="21 мая в 18:36"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@id/description_textview"
+        app:layout_constraintEnd_toEndOf="@id/description_textview"
+        app:layout_constraintTop_toBottomOf="@id/description_textview"
+        app:layout_constraintBottom_toBottomOf="@id/avatar_imageview" />
+
+    <ImageButton
+        android:id="@+id/options_buttonview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#00000000"
+        android:src="@drawable/ic_options_16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/header_topbarrier"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="avatar_imageview, options_buttonview, date_textview" />
+
+    <TextView
+        android:id="@+id/mainText_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/header_topbarrier"
+        tools:text="@tools:sample/lorem/random"
+        android:textSize="11sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="4dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/header_botbarrier"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="mainText_textview" />
+
+    <ImageButton
+        android:id="@+id/likes_buttonview"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_botbarrier"
+        app:layout_constraintEnd_toStartOf="@id/likes_textview"
+        android:src="@drawable/ic_likes_24dp"
+        android:background="#00000000"
+        android:layout_marginStart="12dp" />
+
+    <TextView
+        android:id="@+id/likes_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/likes_buttonview"
+        app:layout_constraintBottom_toBottomOf="@id/likes_buttonview"
+        tools:text="52"
+        android:textSize="11sp"
+        app:layout_constraintTop_toTopOf="@id/likes_buttonview" />
+
+    <ImageButton
+        android:id="@+id/share_buttonview"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        app:layout_constraintStart_toEndOf="@id/likes_textview"
+        app:layout_constraintTop_toBottomOf="@id/header_botbarrier"
+        app:layout_constraintEnd_toStartOf="@id/share_textview"
+        android:src="@drawable/ic_baseline_share_16dp"
+        android:background="#00000000" />
+
+    <TextView
+        android:id="@+id/share_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/share_buttonview"
+        app:layout_constraintBottom_toBottomOf="@id/share_buttonview"
+        tools:text="25"
+        android:textSize="11sp"
+        app:layout_constraintTop_toTopOf="@id/share_buttonview" />
+
+    <ImageButton
+        android:id="@+id/views_buttonview"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        app:layout_constraintTop_toBottomOf="@id/header_botbarrier"
+        app:layout_constraintEnd_toStartOf="@id/views_textview"
+        android:src="@drawable/ic_views_16"
+        android:background="#00000000" />
+
+    <TextView
+        android:id="@+id/views_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/views_buttonview"
+        tools:text="1105"
+        android:textSize="11sp"
+        app:layout_constraintTop_toTopOf="@id/views_buttonview"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
