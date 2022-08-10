@@ -2,44 +2,31 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.annotation.DrawableRes
 import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.viewModel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel by viewModels<PostViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val newPost = Post(
-            1,
-            "Нетология. Университет интернет-профессий",
-            "Текст Нетологии",
-            "25.07.2022"
-        )
 
-        binding.render(newPost)
+        viewModel.data.observe(this) { post -> binding.render(post) }
 
-        binding.likesButtonview?.setOnClickListener {
-            newPost.likedByMe = !newPost.likedByMe
-            binding.likesButtonview.setImageResource(getLikeIconResId(newPost.likedByMe))
-            binding.likesTextview.text = amountFormat(iLike(newPost))
+
+        binding.likesButtonview.setOnClickListener {
+            viewModel.onLikedClicked()
         }
 
-        binding.shareButtonview?.setOnClickListener {
-            binding.shareTextview.text = amountFormat(share())
+        binding.shareButtonview.setOnClickListener {
+            viewModel.onShareClicked()
         }
 
-    }
-
-    private var shareCount: Int = 0
-
-    private fun share(): Int{
-        return shareCount++
-    }
-
-    private fun iLike(post: Post): Int{
-        if (post.likedByMe) post.likes++ else post.likes--
-        return post.likes
     }
 
     private fun amountFormat(number:Int): String{
@@ -60,8 +47,8 @@ class MainActivity : AppCompatActivity() {
         mainTextTextview.text = post.content
         dateTextview.text = post.published
         likesTextview.text = amountFormat(post.likes)
-        shareTextview.text = amountFormat(shareCount)
-        likesButtonview?.setImageResource(getLikeIconResId(post.likedByMe))
+        shareTextview.text = amountFormat(post.shareCount)
+        likesButtonview.setImageResource(getLikeIconResId(post.likedByMe))
     }
 
     @DrawableRes
