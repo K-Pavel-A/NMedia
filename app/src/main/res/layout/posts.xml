@@ -31,6 +31,7 @@
         app:layout_constraintTop_toTopOf="@id/avatar_imageview"
         android:text="Нетология. Университет интернет-профессий" />
 
+
     <TextView
         android:id="@+id/date_textview"
         android:layout_width="0dp"
@@ -44,16 +45,15 @@
         app:layout_constraintTop_toBottomOf="@id/description_textview"
         app:layout_constraintBottom_toBottomOf="@id/avatar_imageview" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/options_buttonview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Widget.AppTheme.OptionsButton"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="#00000000"
-        android:src="@drawable/ic_options_16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/header_topbarrier"
@@ -79,46 +79,28 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="mainText_textview" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/likes_buttonview"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        style="@style/Widget.AppTheme.LikeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:checkable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_botbarrier"
-        app:layout_constraintEnd_toStartOf="@id/likes_textview"
-        android:src="@drawable/ic_likes_24dp"
-        android:background="#00000000"
-        android:layout_marginStart="12dp" />
+        tools:text="1000" />
 
-    <TextView
-        android:id="@+id/likes_textview"
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/share_buttonview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/likes_buttonview"
-        app:layout_constraintBottom_toBottomOf="@id/likes_buttonview"
-        android:text="52"
-        android:textSize="11sp"
-        app:layout_constraintTop_toTopOf="@id/likes_buttonview" />
-
-    <ImageButton
-        android:id="@+id/share_buttonview"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        app:layout_constraintStart_toEndOf="@id/likes_textview"
         app:layout_constraintTop_toBottomOf="@id/header_botbarrier"
-        app:layout_constraintEnd_toStartOf="@id/share_textview"
-        android:src="@drawable/ic_baseline_share_16dp"
-        android:background="#00000000" />
-
-    <TextView
-        android:id="@+id/share_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/share_buttonview"
-        app:layout_constraintBottom_toBottomOf="@id/share_buttonview"
-        android:text="25"
-        android:textSize="11sp"
-        app:layout_constraintTop_toTopOf="@id/share_buttonview" />
+        style="@style/Widget.AppTheme.ShareButton"
+        tools:text="1000"
+        />
 
     <ImageButton
         android:id="@+id/views_buttonview"

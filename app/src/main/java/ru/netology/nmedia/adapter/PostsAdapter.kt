@@ -65,6 +65,7 @@ class PostsAdapter(
             binding.shareButtonview.setOnClickListener {
                 listener.onShareClicked(post)
             }
+            binding.optionsButtonview.setOnClickListener { popupMenu.show() }
         }
 
         fun bind(post: Post){
@@ -75,10 +76,9 @@ class PostsAdapter(
                 descriptionTextview.text = post.author
                 mainTextTextview.text = post.content
                 dateTextview.text = post.published
-                likesTextview.text = amountFormat(post.likes)
-                shareTextview.text = amountFormat(post.shareCount)
-                likesButtonview.setImageResource(getLikeIconResId(post.likedByMe))
-                optionsButtonview.setOnClickListener { popupMenu.show() }
+                likesButtonview.text = amountFormat(post.likes)
+                likesButtonview.isChecked = post.likedByMe
+                shareButtonview.text = amountFormat(post.shareCount)
             }
         }
         private fun amountFormat(number: Int): String {
@@ -93,10 +93,6 @@ class PostsAdapter(
             }
             return text
         }
-
-        @DrawableRes
-        private fun getLikeIconResId(liked: Boolean) =
-            if (liked) R.drawable.ic_active_like_24dp else R.drawable.ic_likes_24dp
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<Post>(){
@@ -106,5 +102,4 @@ class PostsAdapter(
         override fun areContentsTheSame(oldItem: Post, newItem: Post) =
             oldItem == newItem
     }
-
 }
