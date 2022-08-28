@@ -3,7 +3,7 @@
     <string name="greeting">NMedia!</string>
     <string name="remove">Remove</string>
     <string name="menu_edit">Edit</string>
-    <string name="post_text">Post text</string>
+    <string name="post_text">Add new post</string>
     <string name="content" />
     <string name="description_post_save">Сохранить</string>
 </resources>

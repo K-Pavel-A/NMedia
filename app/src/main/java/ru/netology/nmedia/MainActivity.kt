@@ -3,13 +3,11 @@ package ru.netology.nmedia
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
+import ru.netology.nmedia.activity.EditPostActivity
 import ru.netology.nmedia.activity.NewPostActivity
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.util.hideKeyboard
-import ru.netology.nmedia.util.showKeyboard
 import ru.netology.nmedia.viewModel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -36,36 +34,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.currentPost.observe(this){ currentPost ->
-            with(binding.contentEditText){
-                var content = currentPost?.content
-                setText(currentPost?.content)
-                if (content != null) {
-                    requestFocus()
-                    showKeyboard()
-                    with(binding.editPostGroup){
-                        with(binding.editablePostText){
-                            text = content
-                        }
-                        visibility = View.VISIBLE
-                        binding.cancelUpdateButton.setOnClickListener {
-                            content = null
-                            text = content
-                            clearFocus()
-                            hideKeyboard()
-                            visibility = View.INVISIBLE
-                        }
-                    }
-                } else {
-                    clearFocus()
-                    hideKeyboard()
-                    with(binding.editPostGroup) {
-                        visibility = View.INVISIBLE
-                    }
-                }
-            }
-        }
-
         viewModel.shareEvent.observe(this){ post ->
             val intent = Intent().apply {
                 action = Intent.ACTION_SEND
@@ -77,24 +45,24 @@ class MainActivity : AppCompatActivity() {
             startActivity(shareIntent)
         }
 
-        val activityLauncher = registerForActivityResult(
+        val newPostActivityLauncher = registerForActivityResult(
             NewPostActivity.ResultContract
         ){ postContent: String? ->
             postContent?.let(viewModel::onSaveButtonClicked)
         }
 
-        binding.addButton.setOnClickListener {
-            activityLauncher.launch(Unit)
+        val editPostActivityLauncher = registerForActivityResult(
+            EditPostActivity.ResultContract
+        ){ postContent: String? ->
+            postContent?.let(viewModel::onSaveButtonClicked)
         }
-//
-//        viewModel.editEvent.observe(this){ post ->
-//            val activityLauncher = registerForActivityResult(
-//                NewPostActivity.ResultContract
-//            ){ postContent: String? ->
-//                postContent?.let(viewModel::onSaveButtonClicked)
-//            }
-//            activityLauncher.launch(post?.content)
-//        }
 
+        binding.addButton.setOnClickListener {
+            newPostActivityLauncher.launch(Unit)
+        }
+
+        viewModel.editEvent.observe(this) { currentPost ->
+            editPostActivityLauncher.launch(currentPost?.content)
+        }
     }
-}
+    }

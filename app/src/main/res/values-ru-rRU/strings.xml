@@ -4,7 +4,7 @@
     <string name="greeting"> НМедиа! </string>
     <string name="remove">Удалить</string>
     <string name="menu_edit">Изменить</string>
-    <string name="post_text">Текст поста</string>
+    <string name="post_text">Добавьте новый пост</string>
     <string name="content" />
     <string name="description_post_save">Сохранить</string>
 </resources>

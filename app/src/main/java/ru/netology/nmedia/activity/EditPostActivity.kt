@@ -7,9 +7,9 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.databinding.ActivityNewPostBinding
-import ru.netology.nmedia.util.showKeyboard
 
-class NewPostActivity: AppCompatActivity() {
+
+class EditPostActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,6 @@ class NewPostActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         binding.edit.requestFocus()
-        binding.edit.showKeyboard()
 
         binding.ok.setOnClickListener{
             onOkButtonClicked(binding.edit.text?.toString())
@@ -36,14 +35,16 @@ class NewPostActivity: AppCompatActivity() {
         finish()
     }
 
+
     private companion object{
         const val POST_CONTENT_EXTRA_KEY = "postContent"
     }
 
-    object ResultContract: ActivityResultContract<Unit, String?>(){
+    object ResultContract: ActivityResultContract<String?, String?>(){
 
-        override fun createIntent(context: Context, input: Unit): Intent =
-            Intent(context, NewPostActivity::class.java)
+        override fun createIntent(context: Context, input: String?): Intent =
+            Intent(context, EditPostActivity::class.java)
+
 
         override fun parseResult(resultCode: Int, intent: Intent?): String? {
             if (resultCode != Activity.RESULT_OK) return null

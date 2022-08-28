@@ -49,8 +49,5 @@ class PostViewModel(
         currentPost.value = null
     }
 
-//    fun onCreateNewPost(newPostContent: String){
-//
-//    }
 
 }
