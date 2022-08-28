@@ -6,4 +6,5 @@
     <string name="menu_edit">Изменить</string>
     <string name="post_text">Текст поста</string>
     <string name="content" />
+    <string name="description_post_save">Сохранить</string>
 </resources>

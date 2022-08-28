@@ -1,9 +1,11 @@
 package ru.netology.nmedia
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import ru.netology.nmedia.activity.NewPostActivity
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.util.hideKeyboard
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(posts)
         }
 
-        binding.saveButton.setOnClickListener {
+        binding.addButton.setOnClickListener {
             with (binding.contentEditText){
                 val content = text.toString()
                 viewModel.onSaveButtonClicked(content)
@@ -63,6 +65,36 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
 
+        viewModel.shareEvent.observe(this){ post ->
+            val intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                type = "text/plain"
+
+                putExtra(Intent.EXTRA_TEXT, post.content)
+            }
+            val shareIntent = Intent.createChooser(intent, "Поделиться")
+            startActivity(shareIntent)
+        }
+
+        val activityLauncher = registerForActivityResult(
+            NewPostActivity.ResultContract
+        ){ postContent: String? ->
+            postContent?.let(viewModel::onSaveButtonClicked)
+        }
+
+        binding.addButton.setOnClickListener {
+            activityLauncher.launch(Unit)
+        }
+//
+//        viewModel.editEvent.observe(this){ post ->
+//            val activityLauncher = registerForActivityResult(
+//                NewPostActivity.ResultContract
+//            ){ postContent: String? ->
+//                postContent?.let(viewModel::onSaveButtonClicked)
+//            }
+//            activityLauncher.launch(post?.content)
+//        }
+
+    }
 }
