@@ -38,27 +38,10 @@ class FilePostRepository(
         application.openFileOutput(FILE_NAME, Context.MODE_PRIVATE).bufferedWriter().use{
             it.write(gson.toJson(value))
         }
-//        prefs.edit{
-//            val serializedPosts = Json.encodeToString(value)
-//            putString(POSTS_PREFS_KEY, serializedPosts)
-//        }
         data.value = value
     }
 
     override val data: MutableLiveData<List<Post>>
-
-
-//    init{
-//        val initalPosts = List(GENERATED_POSTS_AMOUNT) { index ->
-//            Post(
-//                id = index+1L,
-//                "Нетология. Университет интернет-профессий",
-//                "Номер поста ${index+1}",
-//                "25.07.2022",
-//            )
-//        }
-//        data = MutableLiveData(initalPosts)
-//    }
 
     init{
         val postsFile = application.filesDir.resolve(FILE_NAME)
@@ -69,10 +52,7 @@ class FilePostRepository(
                 gson.fromJson(it, type)
             }
         } else emptyList()
-//        val serializedPosts = prefs.getString(POSTS_PREFS_KEY, null)
-//        val posts: List<Post> = if (serializedPosts != null ){
-//             Json.decodeFromString (serializedPosts)
-//        } else emptyList()
+
         data = MutableLiveData(posts)
     }
 

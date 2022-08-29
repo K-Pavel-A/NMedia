@@ -19,7 +19,7 @@
         <item name="iconTint">@color/like_checkbox_tint</item>
         <item name="minWidth">@dimen/icon_size</item>
         <item name="minHeight">@dimen/icon_size</item>
-        <item name="icon">@drawable/ic_likes_24dp</item>
+        <item name="icon">@drawable/ic_like_24dp</item>
     </style>
 
     <style name="Widget.AppTheme.ShareButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">

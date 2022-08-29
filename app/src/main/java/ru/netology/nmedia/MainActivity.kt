@@ -1,6 +1,7 @@
 package ru.netology.nmedia
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -63,6 +64,11 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.editEvent.observe(this) { currentPost ->
             editPostActivityLauncher.launch(currentPost?.content)
+        }
+
+        viewModel.videoURL.observe(this) { videoURL ->
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoURL))
+            startActivity(intent)
         }
     }
     }

@@ -1,6 +1,7 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.PopupMenu
@@ -66,6 +67,12 @@ class PostsAdapter(
                 listener.onShareClicked(post)
             }
             binding.optionsButtonview.setOnClickListener { popupMenu.show() }
+            binding.videoImage.setOnClickListener{
+                listener.onPlayVideoClicked(post)
+            }
+            binding.playvideoButton.setOnClickListener {
+                listener.onPlayVideoClicked(post)
+            }
         }
 
         fun bind(post: Post){
@@ -79,6 +86,12 @@ class PostsAdapter(
                 likesButtonview.text = amountFormat(post.likes)
                 likesButtonview.isChecked = post.likedByMe
                 shareButtonview.text = amountFormat(post.shareCount)
+                if (post.video.isBlank()) {
+                    videoGroup.visibility = View.GONE
+                } else {
+                    videoGroup.visibility = View.VISIBLE
+                    linkvideoTextview.text = post.video
+                }
             }
         }
         private fun amountFormat(number: Int): String {

@@ -32,8 +32,6 @@
             </intent-filter>
         </activity>
 
-
-
         <activity
             android:name=".activity.ShareActivity"
             android:exported="true">
@@ -56,7 +54,13 @@
             android:name=".activity.EditPostActivity"
             android:exported="false">
         </activity>
-
     </application>
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="*" />
+        </intent>
+    </queries>
 
 </manifest>
