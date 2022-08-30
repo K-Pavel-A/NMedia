@@ -24,7 +24,7 @@
         app:constraint_referenced_ids = "contentEditText,addButton" />
 
 
-    <EditText
+    <TextView
         android:id="@+id/contentEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -32,6 +32,7 @@
         android:inputType="textMultiLine"
         android:background="@android:color/transparent"
         android:padding="16dp"
+        android:textSize="16sp"
         android:importantForAutofill="no"
         app:layout_constraintTop_toTopOf="@id/toolsBarrier"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,81 +51,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/toolsBarrier"
         android:src="@drawable/ic_post_add_24dp" />
-
-    <TextView
-        android:id="@+id/editablePostText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:layout_constraintEnd_toStartOf="@id/cancelUpdateButton"
-        app:layout_constraintBottom_toTopOf="@id/contentEditText"
-        app:layout_constraintStart_toEndOf="@id/pencilView"
-        android:text="Editable Post Text"
-        android:singleLine="true"
-        android:contentDescription="Editable Posts"
-        android:padding="8dp"
-        android:ellipsize="end"
-        android:textSize="14sp"
-        />
-
-
-    <TextView
-        android:id="@+id/editingPost"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/content"
-        android:ellipsize="end"
-        android:padding="8dp"
-        android:singleLine="true"
-        android:text="Editing"
-        android:textSize="14sp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/editablePostText"
-        app:layout_constraintEnd_toStartOf="@id/cancelUpdateButton"
-        app:layout_constraintStart_toEndOf ="@id/pencilView" />
-
-    <ImageButton
-        android:id="@+id/cancelUpdateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:contentDescription="@string/content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/editablePostText"
-        app:layout_constraintBottom_toBottomOf="@id/toolTopBarrier"
-        app:layout_constraintTop_toTopOf="@id/toolsBarrier"
-        android:src="@drawable/ic_baseline_close_40" />
-
-    <ImageView
-        android:id="@+id/pencilView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/editingPost"
-        app:layout_constraintBottom_toBottomOf="@id/toolTopBarrier"
-        app:layout_constraintTop_toTopOf="@id/toolsBarrier"
-        android:src="@drawable/ic_baseline_create_24"
-        />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/toolTopBarrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids = "editingPost" />
-
-
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/editPostGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:background="@color/white"
-        app:constraint_referenced_ids="cancelUpdateButton, editingPost, editablePostText, pencilView" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

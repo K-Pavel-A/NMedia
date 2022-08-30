@@ -18,39 +18,36 @@ class EditPostActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         binding.edit.requestFocus()
+        binding.edit.setText(intent.getStringExtra(Intent.EXTRA_TEXT))
 
-        binding.ok.setOnClickListener{
-            onOkButtonClicked(binding.edit.text?.toString())
+        binding.ok.setOnClickListener {
+            val intent = Intent()
+            val text = binding.edit.text.toString()
+            if (text.isNullOrBlank()) {
+                setResult(Activity.RESULT_CANCELED, intent)
+            } else {
+                intent.putExtra(POST_NEW_CONTENT_EXTRA_KEY, text)
+                setResult(Activity.RESULT_OK, intent)
+            }
+            finish()
         }
     }
-
-    private fun onOkButtonClicked(postContent: String?) {
-        val intent = Intent()
-        if (postContent.isNullOrBlank()){
-            setResult(Activity.RESULT_CANCELED, intent)
-        } else {
-            intent.putExtra(POST_CONTENT_EXTRA_KEY, postContent)
-            setResult(Activity.RESULT_OK, intent)
-        }
-        finish()
-    }
-
 
     private companion object{
-        const val POST_CONTENT_EXTRA_KEY = "postContent"
+        const val POST_NEW_CONTENT_EXTRA_KEY = "newPostContent"
     }
 
     object ResultContract: ActivityResultContract<String?, String?>(){
 
         override fun createIntent(context: Context, input: String?): Intent =
-            Intent(context, EditPostActivity::class.java)
+            Intent(context, EditPostActivity::class.java).putExtra(Intent.EXTRA_TEXT, input)
 
 
         override fun parseResult(resultCode: Int, intent: Intent?): String? {
             if (resultCode != Activity.RESULT_OK) return null
             intent ?: return null
 
-            return intent.getStringExtra(POST_CONTENT_EXTRA_KEY)
+            return intent.getStringExtra(POST_NEW_CONTENT_EXTRA_KEY)
         }
     }
 

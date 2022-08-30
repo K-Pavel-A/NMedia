@@ -28,13 +28,6 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(posts)
         }
 
-        binding.addButton.setOnClickListener {
-            with (binding.contentEditText){
-                val content = text.toString()
-                viewModel.onSaveButtonClicked(content)
-            }
-        }
-
         viewModel.shareEvent.observe(this){ post ->
             val intent = Intent().apply {
                 action = Intent.ACTION_SEND
