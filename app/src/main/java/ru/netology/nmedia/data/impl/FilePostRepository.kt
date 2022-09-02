@@ -96,5 +96,8 @@ class FilePostRepository(
         const val NEXT_ID_PREFS_KEY = "posts"
         const val FILE_NAME = "posts.json"
     }
-
+//
+//    override fun getById(postId: Long): Post? {
+//        return posts.find { it.id == postId }
+//    }
 }

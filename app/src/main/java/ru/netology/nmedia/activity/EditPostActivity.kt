@@ -6,7 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
-import ru.netology.nmedia.databinding.ActivityNewPostBinding
+import ru.netology.nmedia.databinding.FragmentNewPostBinding
 
 
 class EditPostActivity: AppCompatActivity() {
@@ -14,7 +14,7 @@ class EditPostActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityNewPostBinding.inflate(layoutInflater)
+        val binding = FragmentNewPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.edit.requestFocus()

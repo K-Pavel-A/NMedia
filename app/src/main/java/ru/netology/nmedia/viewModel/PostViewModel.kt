@@ -25,6 +25,16 @@ class PostViewModel(
     val shareEvent = SingleLiveEvent<Post>()
     val editEvent = SingleLiveEvent<Post?>()
     val videoURL = SingleLiveEvent<String?>()
+//    val navigateToPostEvent = SingleLiveEvent<Long>()
+
+    private val empty = Post(
+        id = 0,
+        content = "",
+        author = "",
+        likedByMe = false,
+        likes = 0,
+        published = ""
+    )
 
     override fun onLikedClicked(post:Post) = repository.like(post.id)
     override fun onShareClicked(post:Post){
@@ -53,6 +63,25 @@ class PostViewModel(
         repository.save(post)
         currentPost.value = null
     }
+//
+//    override fun onPostClicked(post: Post) {
+//        currentPost.value = post
+//        navigateToPostEvent.value = post.id
+//    }
 
+    fun changeContent(content: String) {
+        val text = content.trim()
+        if (currentPost.value?.content == text) {
+            return
+        }
+        currentPost.value = currentPost.value?.copy(content = text)
+    }
+
+    fun save() {
+        currentPost.value?.let {
+            repository.save(it)
+        }
+        currentPost.value = empty
+    }
 
 }
