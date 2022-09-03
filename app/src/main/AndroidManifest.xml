@@ -14,17 +14,6 @@
         android:theme="@style/Theme.NMedia"
         tools:targetApi="31">
 
-<!--        <activity-->
-<!--        android:name=".FeedFragment"-->
-<!--        android:exported="true">-->
-
-<!--&lt;!&ndash;        <intent-filter>&ndash;&gt;-->
-<!--&lt;!&ndash;            <action android:name="android.intent.action.MAIN" />&ndash;&gt;-->
-
-<!--&lt;!&ndash;            <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;-->
-<!--&lt;!&ndash;        </intent-filter>&ndash;&gt;-->
-<!--&lt;!&ndash;    </activity>&ndash;&gt;-->
-
         <activity
             android:name=".activity.AppActivity"
             android:exported="true">
@@ -47,10 +36,6 @@
             </intent-filter>
         </activity>
 
-<!--        <activity-->
-<!--            android:name=".activity.EditPostActivity"-->
-<!--            android:exported="false">-->
-<!--        </activity>-->
     </application>
 
     <queries>

@@ -73,6 +73,9 @@ class PostsAdapter(
             binding.playvideoButton.setOnClickListener {
                 listener.onPlayVideoClicked(post)
             }
+            binding.emptyPartPost.setOnClickListener{
+                listener.onPostClicked(post)
+            }
         }
 
         fun bind(post: Post){

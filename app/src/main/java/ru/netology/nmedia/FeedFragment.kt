@@ -10,8 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.activity.NewPostFragment.Companion.textArg
-//import ru.netology.nmedia.activity.EditPostActivity
-//import ru.netology.nmedia.activity.NewPostFragment
+import ru.netology.nmedia.activity.OnePostFragment.Companion.textId
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.viewModel.PostViewModel
@@ -32,6 +31,7 @@ class FeedFragment : Fragment() {
         )
 
         binding.postsRecyclerView.adapter = adapter
+
         viewModel.data.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
         }
@@ -47,22 +47,9 @@ class FeedFragment : Fragment() {
             startActivity(shareIntent)
         }
 
-//        val newPostActivityLauncher = registerForActivityResult(
-//            NewPostFragment.ResultContract
-//        ){ postContent: String? ->
-//            postContent?.let(viewModel::onSaveButtonClicked)
-//        }
-//
-//        val editPostActivityLauncher = registerForActivityResult(
-//            EditPostActivity.ResultContract
-//        ){ postContent: String? ->
-//            postContent?.let(viewModel::onSaveButtonClicked)
-//        }
-
         binding.addButton.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
-
 
         viewModel.editEvent.observe(viewLifecycleOwner) { currentPost ->
             findNavController().navigate(
@@ -76,6 +63,16 @@ class FeedFragment : Fragment() {
             startActivity(intent)
         }
 
+        viewModel.openPostEvent.observe(viewLifecycleOwner) { openPostEvent ->
+            if (openPostEvent != null) {
+                findNavController().navigate(
+                    R.id.action_feedFragment_to_onePostFragment,
+                    Bundle().apply {
+
+                        textId = openPostEvent.id.toString()
+                    })
+            }
+        }
 
         return binding.root
     }
