@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">НМедиа!</string>
+    <string name="greeting"> НМедиа! </string>
+    <string name="remove">Удалить</string>
+    <string name="menu_edit">Изменить</string>
+    <string name="post_text">Добавьте новый пост</string>
+    <string name="content" />
+    <string name="description_post_save">Сохранить</string>
+</resources>

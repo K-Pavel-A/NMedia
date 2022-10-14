@@ -12,5 +12,28 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
     </style>
+
+    <style name="Widget.AppTheme.LikeButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="iconTint">@color/like_checkbox_tint</item>
+        <item name="minWidth">@dimen/icon_size</item>
+        <item name="minHeight">@dimen/icon_size</item>
+        <item name="icon">@drawable/ic_like_24dp</item>
+    </style>
+
+    <style name="Widget.AppTheme.ShareButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="iconTint">@color/share_button_tint</item>
+        <item name="minWidth">@dimen/icon_size</item>
+        <item name="minHeight">@dimen/icon_size</item>
+        <item name="icon">@drawable/ic_baseline_share_16dp</item>
+    </style>
+
+    <style name="Widget.AppTheme.OptionsButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="iconTint">@color/options_button_tint</item>
+        <item name="minWidth">8dp</item>
+        <item name="minHeight">8dp</item>
+        <item name="icon">@drawable/ic_options_16dp</item>
+    </style>
+
 </resources>
